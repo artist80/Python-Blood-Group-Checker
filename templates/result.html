@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blood Group Predictor - Results</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img src="{{ url_for('static', filename='logo.png') }}" alt="Logo">
+        </div>
+        <nav>
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/about">About</a></li>
+                <li><a href="/contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+    <div class="container">
+        <div class="result">
+            <h1>Support Palestine🇵🇸</h1>
+            <h2>Prediction Result</h2>
+            <p><strong>Mother's Blood Group:</strong> {{ mother }}</p>
+            <p><strong>Father's Blood Group:</strong> {{ father }}</p>
+            <p><strong>Possible Blood Groups of the Child:</strong></p>
+            <ul>
+                {% for bg in possible_blood_groups %}
+                    <li>{{ bg }}</li>
+                {% endfor %}
+            </ul>
+            <form action="/download" method="post">
+                <input type="hidden" name="mother" value="{{ mother }}">
+                <input type="hidden" name="father" value="{{ father }}">
+                <button type="submit">Download as PDF</button>
+            </form>
+        </div>
+    </div>
+    <footer>
+        <p>&copy; 2024 Blood Group Predictor. All Rights Reserved.</p>
+    </footer>
+</body>
+</html>
